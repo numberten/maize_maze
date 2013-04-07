@@ -7,6 +7,9 @@ class Cell:
    def setEdge(self, index, value):
       self.edges[index] = value
 
+   def getEdges(self):
+      return self.edges
+
 class Grid:
    def __init__(self, width, height):
       self.width         = width
@@ -18,9 +21,17 @@ class Grid:
       self.total_visited = 0
       self.generateMaze(0,0)
 
+   def echo(self):
+      echo = ""
+      for i in range(self.width):
+         for j in range(self.height):
+            echo = echo + "["+str(i)+"]["+str(j)+"]("+str(self.visited[i][j])+")"+str(self.cells[i][j].getEdges())+"\n"
+      return echo
+
    def listAdjacent(self):
-      self.visited[self.x][self.y] = True
-      self.total_visited += 1
+      if (not self.visited[self.x][self.y]):
+         self.visited[self.x][self.y] = True
+         self.total_visited += 1
       adjacent = [] 
       #(cell, index in current's edge list, index of current in this list, dx, dy)
       #north
@@ -60,3 +71,4 @@ class Grid:
       print("All done?\nCells visited: "+str(self.total_visited))
 
 g  = Grid(5,5)
+print(g.echo())
