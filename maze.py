@@ -22,10 +22,10 @@ class Grid:
       self.generateMaze(0,0)
 
    def echo(self):
-      echo = ""
+      echo = str(self.width)+":"+str(self.height)+"\n"
       for i in range(self.width):
          for j in range(self.height):
-            echo = echo + "["+str(i)+"]["+str(j)+"]("+str(self.visited[i][j])+")"+str(self.cells[i][j].getEdges())+"\n"
+            echo = echo + "["+str(i)+"]["+str(j)+"]"+str(self.cells[i][j].getEdges())+"\n"
       return echo
 
    def listAdjacent(self):
@@ -59,16 +59,17 @@ class Grid:
             neighbor = adjacent[r]
             current.setEdge(neighbor[1], 0)
             neighbor[0].setEdge(neighbor[2], 0)
-            stack.append(current)
+            stack.append((current,self.x,self.y))
             current = neighbor[0]
             self.x += neighbor[3]
             self.y += neighbor[4]
          elif (stack != []):
-            current = stack.pop()
+            head = stack.pop()
+            current, self.x, self.y = head[0], head[1], head[2]
          else:
             self.x,self.y = rand(self.width),rand(self.height)
             current = self.cells[self.x][self.y]
-      print("All done?\nCells visited: "+str(self.total_visited))
+      #print("All done?\nCells visited: "+str(self.total_visited))
 
-g  = Grid(5,5)
+g  = Grid(30,20)
 print(g.echo())
