@@ -19,29 +19,29 @@ puts $cells
 puts $grid_width
 puts $grid_height
 
-$grid_width = $grid_width*20
-$grid_height = $grid_height*20
+$grid_width = ($grid_width*28.8).ceil#20
+$grid_height = ($grid_height*28.8).ceil#20
 
 class GameWindow < Gosu::Window
          def initialize
 	    super $grid_width, $grid_height, false
 	    self.caption = "Maize Maze Maize"
-            @p0000 = Gosu::Image.new(self, "./art/0000.png", false)
-            @p0001 = Gosu::Image.new(self, "./art/0001.png", false)
-            @p0010 = Gosu::Image.new(self, "./art/0010.png", false)
-            @p0011 = Gosu::Image.new(self, "./art/0011.png", false)
-            @p0100 = Gosu::Image.new(self, "./art/0100.png", false)
-            @p0101 = Gosu::Image.new(self, "./art/0101.png", false)
-            @p0110 = Gosu::Image.new(self, "./art/0110.png", false)
-            @p0111 = Gosu::Image.new(self, "./art/0111.png", false)
-            @p1000 = Gosu::Image.new(self, "./art/1000.png", false)
-            @p1001 = Gosu::Image.new(self, "./art/1001.png", false)
-            @p1010 = Gosu::Image.new(self, "./art/1010.png", false)
-            @p1011 = Gosu::Image.new(self, "./art/1011.png", false)
-            @p1100 = Gosu::Image.new(self, "./art/1100.png", false)
-            @p1101 = Gosu::Image.new(self, "./art/1101.png", false)
-            @p1110 = Gosu::Image.new(self, "./art/1110.png", false)
-            @p1111 = Gosu::Image.new(self, "./art/1111.png", false)
+            @p0000 = Gosu::Image.new(self, "./art2/0000.png", false)
+            @p0001 = Gosu::Image.new(self, "./art2/0001.png", false)
+            @p0010 = Gosu::Image.new(self, "./art2/0010.png", false)
+            @p0011 = Gosu::Image.new(self, "./art2/0011.png", false)
+            @p0100 = Gosu::Image.new(self, "./art2/0100.png", false)
+            @p0101 = Gosu::Image.new(self, "./art2/0101.png", false)
+            @p0110 = Gosu::Image.new(self, "./art2/0110.png", false)
+            @p0111 = Gosu::Image.new(self, "./art2/0111.png", false)
+            @p1000 = Gosu::Image.new(self, "./art2/1000.png", false)
+            @p1001 = Gosu::Image.new(self, "./art2/1001.png", false)
+            @p1010 = Gosu::Image.new(self, "./art2/1010.png", false)
+            @p1011 = Gosu::Image.new(self, "./art2/1011.png", false)
+            @p1100 = Gosu::Image.new(self, "./art2/1100.png", false)
+            @p1101 = Gosu::Image.new(self, "./art2/1101.png", false)
+            @p1110 = Gosu::Image.new(self, "./art2/1110.png", false)
+            @p1111 = Gosu::Image.new(self, "./art2/1111.png", false)
             @test = Gosu::Image.new(self, "../../ruby_scripts/gosu/cell_growth/cell.png", true)
          end
 
@@ -62,7 +62,7 @@ class GameWindow < Gosu::Window
 
          def draw_tile(tile_string)
             tile = get_tile(tile_string)
-            tile.draw(Integer(get_x(tile_string))*20,Integer(get_y(tile_string))*20,0,0.1,0.1)
+            tile.draw((Integer(get_x(tile_string))*28.8).ceil,(Integer(get_y(tile_string))*28.8).ceil,0,0.2,0.2)
          end
 
          def get_tile(tile_string)
