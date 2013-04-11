@@ -13,18 +13,18 @@ class Cell:
 
 class Grid:
    def __init__(self, width, height, art):
-      self.width         = width
-      self.height        = height
+      self.width         = int(width)
+      self.height        = int(height)
       self.art           = art
-      self.visited       = [[False for i in range(height)] for i in range(width)]
-      self.cells         = [[Cell() for i in range(height)] for i in range(width)]
-      self.x             = rand(width)
-      self.y             = rand(height)
+      self.visited       = [[False for i in range(self.height)] for i in range(self.width)]
+      self.cells         = [[Cell() for i in range(self.height)] for i in range(self.width)]
+      self.x             = rand(self.width)
+      self.y             = rand(self.height)
       self.total_visited = 0
       self.generateMaze(0,0)
 
    def echo(self):
-      echo = str(self.width)+":"+str(self.height)+":"+art+"\n"
+      echo = str(self.width)+":"+str(self.height)+":"+self.art+"\n"
       for i in range(self.width):
          for j in range(self.height):
             echo = echo + "["+str(i)+"]["+str(j)+"]"+str(self.cells[i][j].getEdges())+"\n"
@@ -72,8 +72,9 @@ class Grid:
             self.x,self.y = rand(self.width),rand(self.height)
             current = self.cells[self.x][self.y]
       #print("All done?\nCells visited: "+str(self.total_visited))
-if (len(sys.argv) == 3):
-   g = Grid(sys.argv[0],sys.argv[1], sys.argv[2])
+if (len(sys.argv) == 4):
+   g = Grid(sys.argv[1],sys.argv[2], sys.argv[3])
    print(g.echo())
 else:
-   print("Error: Must have 3 command line arguments to generate maze. Width Height ArtStyle, ex: 30, 20, 1")
+   print("Error: command line args = width height artstyle, ex:>python maze.py 30 20 1")
+
