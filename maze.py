@@ -22,7 +22,7 @@ class Grid:
       self.generateMaze(0,0)
 
    def echo(self):
-      echo = str(self.width)+":"+str(self.height)+"\n"
+      echo = str(self.width)+":"+str(self.height)+":1\n"
       for i in range(self.width):
          for j in range(self.height):
             echo = echo + "["+str(i)+"]["+str(j)+"]"+str(self.cells[i][j].getEdges())+"\n"
