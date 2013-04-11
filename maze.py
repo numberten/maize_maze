@@ -1,4 +1,5 @@
 from random import randrange as rand
+import sys
 
 class Cell:
    def __init__(self):
@@ -11,9 +12,10 @@ class Cell:
       return self.edges
 
 class Grid:
-   def __init__(self, width, height):
+   def __init__(self, width, height, art):
       self.width         = width
       self.height        = height
+      self.art           = art
       self.visited       = [[False for i in range(height)] for i in range(width)]
       self.cells         = [[Cell() for i in range(height)] for i in range(width)]
       self.x             = rand(width)
@@ -22,7 +24,7 @@ class Grid:
       self.generateMaze(0,0)
 
    def echo(self):
-      echo = str(self.width)+":"+str(self.height)+":1\n"
+      echo = str(self.width)+":"+str(self.height)+":"+art+"\n"
       for i in range(self.width):
          for j in range(self.height):
             echo = echo + "["+str(i)+"]["+str(j)+"]"+str(self.cells[i][j].getEdges())+"\n"
@@ -70,6 +72,8 @@ class Grid:
             self.x,self.y = rand(self.width),rand(self.height)
             current = self.cells[self.x][self.y]
       #print("All done?\nCells visited: "+str(self.total_visited))
-
-g  = Grid(30,20)
-print(g.echo())
+if (len(sys.argv) == 3):
+   g = Grid(sys.argv[0],sys.argv[1], sys.argv[2])
+   print(g.echo())
+else:
+   print("Error: Must have 3 command line arguments to generate maze. Width Height ArtStyle, ex: 30, 20, 1")
