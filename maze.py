@@ -6,7 +6,7 @@ class Cell:
       self.edges   = [1,1,1,1]
 
    def setEdge(self, index, value):
-      self.edges[index] = value
+         self.edges[index] = value
 
    def getEdges(self):
       return self.edges
@@ -34,7 +34,7 @@ class Grid:
       if (not self.visited[self.x][self.y]):
          self.visited[self.x][self.y] = True
          self.total_visited += 1
-      adjacent = [] 
+         adjacent = [] 
       #(cell, index in current's edge list, index of current in this list, dx, dy)
       #north
       if (self.y > 0 and not self.visited[self.x][self.y-1]):
@@ -72,9 +72,12 @@ class Grid:
             self.x,self.y = rand(self.width),rand(self.height)
             current = self.cells[self.x][self.y]
       #print("All done?\nCells visited: "+str(self.total_visited))
+
 if (len(sys.argv) == 4):
    g = Grid(sys.argv[1],sys.argv[2], sys.argv[3])
    print(g.echo())
 else:
-   print("Error: command line args = width height artstyle, ex:>python maze.py 30 20 1")
+   print("Error: command line args = width height artstyle, example: python maze.py 10 10 1") 
+
+
 
